@@ -1,0 +1,39 @@
+.doctor-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.doctor-image-section {
+  flex: 0 0 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.doctor-image {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-info {
+  flex: 0 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #eef6f9;
+  font-family: Arial, sans-serif;
+}
+
+.colours{
+  background-color: black;
+  color:white;
+}
+
+button :hover{
+   color: blue;
+   background-color: white;
+}

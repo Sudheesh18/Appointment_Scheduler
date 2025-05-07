@@ -1,0 +1,19 @@
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+  gap: 20px; 
+}
+
+.heading-box1, .heading-box2, .heading-box3 {
+  width: calc(33% - 20px); 
+  border: 15px solid blue;
+  padding: 50px 0;
+  background-color: skyblue;
+  text-align: center;
+  box-sizing: border-box; 
+}
+
+.heading-box1, .heading-box2, .heading-box3 {
+  cursor: pointer;
+}
