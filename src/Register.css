@@ -1,52 +1,67 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: rgba(255, 0, 0, 0.685);
+  background: linear-gradient(135deg, #f44336, #ff9800);
 }
 
-.hosp-title1{
-  border: 12px dotted yellowgreen;
-  text-align:center;
-  color: aqua;
+.hosp-title1 {
+  border: 6px dashed #8bc34a;
+  text-align: center;
+  color: #00ffff;
+  font-size: 2rem;
+  padding: 1rem;
+  background-color: #263238;
+  border-radius: 12px;
+  margin: 1rem;
 }
-.hosp-title2{
-  border: 12px solid purple;
-  text-align:center;
+
+.hosp-title2 {
+  border: 6px solid rebeccapurple;
+  text-align: center;
   color: slateblue;
+  font-size: 2rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  margin: 1rem;
 }
+
 .register-wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
 }
 
 .register-box {
-  background-color: rgba(0, 128, 0, 0.87);
+  background-color: #ffffff;
   padding: 2.5rem 3rem;
   border-radius: 16px;
-  box-shadow: 0 10px 30px brown;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 480px;
-  margin-top:0.5cm;
+  margin-top: 1rem;
 }
 
 .register-title {
   text-align: center;
   margin-bottom: 1.5rem;
-  font-size: 24px;
-  color: peru;
+  font-size: 28px;
+  color: #3f51b5;
+  font-weight: bold;
 }
 
 .input-group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .input-group label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.4rem;
-  color: green;
+  color: #4caf50;
 }
 
 .custom-input input {
@@ -55,21 +70,21 @@ body {
   border: 2px solid #ccc;
   border-radius: 10px;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
   outline: none;
-  background-color: transparent;
+  background-color: #f9f9f9;
 }
 
 .custom-input input:focus {
-  border-color: dodgerblue;
-  background-color: grey;
+  border-color: #3f51b5;
+  background-color: #e3f2fd;
 }
 
 .register-btn {
   width: 100%;
   padding: 12px;
-  background-color: rgba(0, 0, 255, 0.473);
-  color: black;
+  background-color: #3f51b5;
+  color: #fff;
   font-weight: 600;
   border: none;
   border-radius: 10px;
@@ -79,15 +94,10 @@ body {
 }
 
 .register-btn:hover {
-  background-color: rgb(255, 47, 168);
+  background-color: #ff4081;
 }
 
 .register-error {
-  color: pink;
-  background-color: #ffe6e6;
-  padding: 10px;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  font-size: 14px;
+  color: #b71c1c;
+  background-color: #ffcd
 }

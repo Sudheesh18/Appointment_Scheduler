@@ -1,19 +1,32 @@
 .dashboard-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; 
-  gap: 20px; 
+  justify-content: space-between;
+  gap: 20px;
+  padding: 1rem;
+  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
 }
 
 .heading-box1, .heading-box2, .heading-box3 {
-  width: calc(33% - 20px); 
-  border: 15px solid blue;
-  padding: 50px 0;
-  background-color: skyblue;
+  width: calc(33% - 20px);
+  padding: 40px 0;
   text-align: center;
-  box-sizing: border-box; 
+  background: linear-gradient(to bottom right, #81d4fa, #4fc3f7);
+  border: 4px solid #2196f3;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(33, 150, 243, 0.2);
+  color: #0d47a1;
+  font-size: 20px;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
-.heading-box1, .heading-box2, .heading-box3 {
-  cursor: pointer;
+.heading-box1:hover,
+.heading-box2:hover,
+.heading-box3:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(33, 150, 243, 0.4);
+  background: linear-gradient(to bottom right, #4fc3f7, #29b6f6);
 }

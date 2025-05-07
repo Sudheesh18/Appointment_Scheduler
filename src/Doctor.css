@@ -1,39 +1,37 @@
 .doctor-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .doctor-image-section {
-  flex: 0 0 20%;
+  flex: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 1.5rem;
+  background-color: #ffffff10;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 400px;
 }
 
 .doctor-image {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  border: 4px solid #00e5ff;
 }
 
-.doctor-info {
-  flex: 0 0 auto;
-  padding: 20px;
-  text-align: center;
-  background-color: #eef6f9;
-  font-family: Arial, sans-serif;
-}
-
-.colours{
-  background-color: black;
-  color:white;
-}
-
-button :hover{
-   color: blue;
-   background-color: white;
-}
