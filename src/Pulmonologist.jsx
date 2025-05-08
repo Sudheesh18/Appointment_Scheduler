@@ -8,17 +8,17 @@ function Pulmonologist() {
   const pulmonologists = [
     {
       id: 1,
-      name: "Dr. Ayesha Khan",
+      name: "Dr. Ayesha",
       available: "Mon, Wed, Fri (11am - 3pm)",
     },
     {
       id: 2,
-      name: "Dr. Ramesh Patel",
+      name: "Dr. Ramesh",
       available: "Tue, Thu (10am - 2pm)",
     },
     {
       id: 3,
-      name: "Dr. Sandeep Verma",
+      name: "Dr. Sandeep",
       available: "Sat (9am - 12pm)",
     }
   ];

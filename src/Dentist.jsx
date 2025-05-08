@@ -13,7 +13,7 @@ function Dentist() {
     },
     {
       id: 2,
-      name: "Dr. Thamaraiselvan",
+      name: "Dr. Thanraj",
       available: "Tue, Thu (1pm - 5pm)",
     },
     {

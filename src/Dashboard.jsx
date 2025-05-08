@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import './Dashboard.css';
 import {useNavigate} from 'react-router-dom';
 
@@ -28,7 +28,7 @@ const handlePediatrician = () => {
 
   return (
     <>
-    <br/><br/><br/>
+    <div className="overall-container">
       <div className="dashboard-container">
         <h1 className="heading-box1" onClick={handleDentist}>DENTIST</h1>
         <h1 className="heading-box2" onClick={handleCardiologist}>CARDIOLOGIST</h1>
@@ -40,8 +40,9 @@ const handlePediatrician = () => {
         <h1 className="heading-box2" onClick={handlePulmonologist}>PULMONOLOGIST</h1>
         <h1 className="heading-box3" onClick={handlePediatrician}>PEDIATRICIAN</h1>
       </div>
+      </div>
     </>
   );
 }
 
-export default Dashboard;
+export default Dashboard; 
