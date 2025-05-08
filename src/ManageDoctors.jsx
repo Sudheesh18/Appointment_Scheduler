@@ -18,11 +18,11 @@ const ManageDoctors = () => {
     { name: 'Dr. Naman', specialty: 'Pediatrician' },
     { name: 'Dr. Jakir', specialty: 'Pediatrician' },
     { name: 'Dr. Laxmanan', specialty: 'Pediatrician' },
-    { name: 'Dr. Ayesha Khan', specialty: 'Pulmonologist' },
-    { name: 'Dr. Ramesh Patel', specialty: 'Pulmonologist' },
-    { name: 'Dr. Sandeep Verma', specialty: 'Pulmonologist' },
+    { name: 'Dr. Ayesha ', specialty: 'Pulmonologist' },
+    { name: 'Dr. Ramesh', specialty: 'Pulmonologist' },
+    { name: 'Dr. Sandeep', specialty: 'Pulmonologist' },
     { name: 'Dr. Sanjay', specialty: 'Dentist' },
-    { name: 'Dr. Thamaraiselvan', specialty: 'Dentist' },
+    { name: 'Dr. selvan', specialty: 'Dentist' },
     { name: 'Dr. Uday', specialty: 'Dentist' },
   ];
 
