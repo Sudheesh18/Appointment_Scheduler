@@ -1,48 +1,77 @@
-import React from 'react'; 
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
-import {useNavigate} from 'react-router-dom';
+import NavigationBar from './NavigationBar';
+import ThemeToggle from './ThemeToggle';
 
-function Dashboard(){
+function Dashboard() {
+  const navigate = useNavigate();
 
-const navigate=useNavigate();
-
-const handleDentist = () => {
-  navigate('/Dentist')
-} 
-const handleCardiologist = () => {
-  navigate('/Cardiologist');
-}
-const handleNeurologist = () => {
-  navigate('/Neurologist');
-}
-const handlePsychiatrist=()=>{
-  navigate('/Psychiatrist');
-}
-const handlePulmonologist = () => {
-  navigate('/Pulmonologist')
-} 
-const handlePediatrician = () => {
-  navigate('/Pediatrician')
-} 
-
+  const specialties = [
+    {
+      name: "DENTIST",
+      description: "Specialists in oral health, teeth, and gum care",
+      icon: "🦷",
+      path: "/Dentist"
+    },
+    {
+      name: "CARDIOLOGIST",
+      description: "Heart specialists focusing on cardiovascular health",
+      icon: "❤️",
+      path: "/Cardiologist"
+    },
+    {
+      name: "NEUROLOGIST",
+      description: "Experts in nervous system disorders and treatment",
+      icon: "🧠",
+      path: "/Neurologist"
+    },
+    {
+      name: "PSYCHIATRIST",
+      description: "Mental health professionals providing therapy and medication",
+      icon: "🧘",
+      path: "/Psychiatrist"
+    },
+    {
+      name: "PULMONOLOGIST",
+      description: "Respiratory system specialists for lung-related conditions",
+      icon: "🫁",
+      path: "/Pulmonologist"
+    },
+    {
+      name: "PEDIATRICIAN",
+      description: "Child healthcare specialists from birth through adolescence",
+      icon: "👶",
+      path: "/Pediatrician"
+    }
+  ];
 
   return (
     <>
-    <div className="overall-container">
-      <div className="dashboard-container">
-        <h1 className="heading-box1" onClick={handleDentist}>DENTIST</h1>
-        <h1 className="heading-box2" onClick={handleCardiologist}>CARDIOLOGIST</h1>
-        <h1 className="heading-box3" onClick={handleNeurologist}>NEUROLOGIST</h1>
+      <NavigationBar />
+      <div className="overall-container">
+        <div className="dashboard-header">
+          <h1>Medical Specialists</h1>
+          <p>Schedule appointments with top specialists in various medical fields</p>
         </div>
-        <br/><br/><br/><br/>
-      <div className="dashboard-container">
-        <h1 className="heading-box1" onClick={handlePsychiatrist}>PSYCHIATRIST</h1>
-        <h1 className="heading-box2" onClick={handlePulmonologist}>PULMONOLOGIST</h1>
-        <h1 className="heading-box3" onClick={handlePediatrician}>PEDIATRICIAN</h1>
+       
+        <div className="dashboard-container">
+          {specialties.map((specialty) => (
+            <div
+              key={specialty.name}
+              className="specialty-card"
+              onClick={() => navigate(specialty.path)}
+            >
+              <div className="specialty-icon">{specialty.icon}</div>
+              <div className="specialty-name">{specialty.name}</div>
+              <div className="specialty-description">{specialty.description}</div>
+            </div>
+          ))}
+        </div>
       </div>
-      </div>
+      <ThemeToggle />
     </>
   );
 }
 
-export default Dashboard; 
+export default Dashboard;

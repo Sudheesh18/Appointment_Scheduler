@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Doctor.css';
+import NavigationBar from './NavigationBar';
+import SearchAndFilter from './SearchAndFilter';
+import HealthTip from './HealthTip';
+import DoctorOfDay from './DoctorOfDay';
+import ThemeToggle from './ThemeToggle';
 
 function Pediatrician() {
   const navigate = useNavigate();
-
+  const [filteredDoctors, setFilteredDoctors] = useState([]);
+ 
   const pediatricians = [
     {
       id: 1,
@@ -23,34 +29,61 @@ function Pediatrician() {
     }
   ];
 
+  useEffect(() => {
+    setFilteredDoctors(pediatricians);
+  }, []);
+
+  const handleFilterChange = (filtered) => {
+    setFilteredDoctors(filtered);
+  };
+
   const handleSchedule = (doctorId) => {
     alert("Thank you for your request, your appointment will be scheduled soon");
-    navigate('/');};
+    navigate('/');
+  };
 
   return (
-    <div className="doctor-page">
-      <div className="doctor-image-section">
-        <img 
-          src="data:image/jpeg;base64,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" 
-          alt="Pediatrician Department"
+    <>
+      <NavigationBar />
+      <div className="doctor-page">
+        <SearchAndFilter
+          doctors={pediatricians}
+          onFilterChange={handleFilterChange}
         />
-      </div>
+       
+        <div className="doctor-content">
+          <div className="doctor-main">
+            <div className="doctor-image-section">
+              <img
+                src="https://www.shutterstock.com/image-photo/mother-baby-stethoscope-pediatrician-healthcare-260nw-2310717197.jpg"
+                alt="Pediatrician Department"
+              />
+            </div>
 
-      <div className="doctor-list-section">
-        <h2>Available Pediatricians</h2>
-        <ul className="doctor-list">
-          {pediatricians.map((doc) => (
-            <li key={doc.id} className="doctor-card">
-              <h3>{doc.name}</h3>
-              <p><strong>Available:</strong> {doc.available}</p>
-              <button onClick={() => handleSchedule(doc.id)}>
-                Schedule Appointment
-              </button>
-            </li>
-          ))}
-        </ul>
+            <div className="doctor-list-section">
+              <h2>Available Pediatricians</h2>
+              <ul className="doctor-list">
+                {filteredDoctors.map((doc) => (
+                  <li key={doc.id} className="doctor-card">
+                    <h3>{doc.name}</h3>
+                    <p><strong>Available:</strong> {doc.available}</p>
+                    <button onClick={() => handleSchedule(doc.id)}>
+                      Schedule Appointment
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+         
+          <div className="doctor-sidebar">
+            <HealthTip specialty="Pediatrician" />
+            <DoctorOfDay specialty="Pediatrician" />
+          </div>
+        </div>
       </div>
-    </div>
+      <ThemeToggle />
+    </>
   );
 }
 

@@ -9,8 +9,7 @@ import Pulmonologist from './Pulmonologist';
 import Psychiatrist from './Psychiatrist';
 import Pediatrician from './Pediatrician';
 import AdminDashboard from './AdminDashboard';
-import ManageDoctors from './ManageDoctors'; 
-
+import ManageDoctors from './ManageDoctors';
 function App() {
   return (
     <Router>

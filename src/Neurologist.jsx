@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Doctor.css';
+import NavigationBar from './NavigationBar';
+import SearchAndFilter from './SearchAndFilter';
+import HealthTip from './HealthTip';
+import DoctorOfDay from './/DoctorOfDay';
+import ThemeToggle from './ThemeToggle';
 
 function Neurologist() {
   const navigate = useNavigate();
-
+  const [filteredDoctors, setFilteredDoctors] = useState([]);
+ 
   const neurologists = [
     {
       id: 1,
@@ -23,34 +29,61 @@ function Neurologist() {
     }
   ];
 
+  useEffect(() => {
+    setFilteredDoctors(neurologists);
+  }, []);
+
+  const handleFilterChange = (filtered) => {
+    setFilteredDoctors(filtered);
+  };
+
   const handleSchedule = (doctorId) => {
     alert("Thank you for your request, your appointment will be scheduled soon");
-    navigate('/');};
+    navigate('/');
+  };
 
   return (
-    <div className="doctor-page">
-      <div className="doctor-image-section">
-        <img 
-          src="data:image/jpeg;base64,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" 
-          alt="Neurologist Department"
+    <>
+      <NavigationBar />
+      <div className="doctor-page">
+        <SearchAndFilter
+          doctors={neurologists}
+          onFilterChange={handleFilterChange}
         />
-      </div>
+       
+        <div className="doctor-content">
+          <div className="doctor-main">
+            <div className="doctor-image-section">
+              <img
+                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                alt="Neurologist Department"
+              />
+            </div>
 
-      <div className="doctor-list-section">
-        <h2>Available Neurologists</h2>
-        <ul className="doctor-list">
-          {neurologists.map((doc) => (
-            <li key={doc.id} className="doctor-card">
-              <h3>{doc.name}</h3>
-              <p><strong>Available:</strong> {doc.available}</p>
-              <button onClick={() => handleSchedule(doc.id)}>
-                Schedule Appointment
-              </button>
-            </li>
-          ))}
-        </ul>
+            <div className="doctor-list-section">
+              <h2>Available Neurologists</h2>
+              <ul className="doctor-list">
+                {filteredDoctors.map((doc) => (
+                  <li key={doc.id} className="doctor-card">
+                    <h3>{doc.name}</h3>
+                    <p><strong>Available:</strong> {doc.available}</p>
+                    <button onClick={() => handleSchedule(doc.id)}>
+                      Schedule Appointment
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+         
+          <div className="doctor-sidebar">
+            <HealthTip specialty="Neurologist" />
+            <DoctorOfDay specialty="Neurologist" />
+          </div>
+        </div>
       </div>
-    </div>
+      <ThemeToggle />
+    </>
   );
 }
 
