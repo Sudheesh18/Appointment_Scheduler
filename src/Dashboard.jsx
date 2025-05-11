@@ -35,7 +35,7 @@ function Dashboard() {
     {
       name: "PULMONOLOGIST",
       description: "Respiratory system specialists for lung-related conditions",
-      icon: "🫁",
+      icon: "🏥",
       path: "/Pulmonologist"
     },
     {
@@ -54,10 +54,10 @@ function Dashboard() {
           <h1>Medical Specialists</h1>
           <p>Schedule appointments with top specialists in various medical fields</p>
         </div>
-       
+        
         <div className="dashboard-container">
           {specialties.map((specialty) => (
-            <div
+            <div 
               key={specialty.name}
               className="specialty-card"
               onClick={() => navigate(specialty.path)}

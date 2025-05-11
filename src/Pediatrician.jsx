@@ -10,7 +10,7 @@ import ThemeToggle from './ThemeToggle';
 function Pediatrician() {
   const navigate = useNavigate();
   const [filteredDoctors, setFilteredDoctors] = useState([]);
- 
+  
   const pediatricians = [
     {
       id: 1,
@@ -38,7 +38,7 @@ function Pediatrician() {
   };
 
   const handleSchedule = (doctorId) => {
-    alert("Thank you for your request, your appointment will be scheduled soon");
+    alert("Thank you for your request, your appointment will be scheduled soon through an email");
     navigate('/');
   };
 
@@ -46,16 +46,16 @@ function Pediatrician() {
     <>
       <NavigationBar />
       <div className="doctor-page">
-        <SearchAndFilter
-          doctors={pediatricians}
+        <SearchAndFilter 
+          doctors={pediatricians} 
           onFilterChange={handleFilterChange}
         />
-       
+        
         <div className="doctor-content">
           <div className="doctor-main">
             <div className="doctor-image-section">
               <img
-                src="https://www.shutterstock.com/image-photo/mother-baby-stethoscope-pediatrician-healthcare-260nw-2310717197.jpg"
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                 alt="Pediatrician Department"
               />
             </div>
@@ -75,7 +75,7 @@ function Pediatrician() {
               </ul>
             </div>
           </div>
-         
+          
           <div className="doctor-sidebar">
             <HealthTip specialty="Pediatrician" />
             <DoctorOfDay specialty="Pediatrician" />

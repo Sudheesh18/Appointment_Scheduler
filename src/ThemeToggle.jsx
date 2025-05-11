@@ -16,8 +16,8 @@ const ThemeToggle = () => {
   }, [isDarkMode]);
 
   return (
-    <button
-      className="theme-toggle"
+    <button 
+      className="theme-toggle" 
       onClick={() => setIsDarkMode(!isDarkMode)}
       aria-label="Toggle dark mode"
     >

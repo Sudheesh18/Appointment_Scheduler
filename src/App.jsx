@@ -10,6 +10,13 @@ import Psychiatrist from './Psychiatrist';
 import Pediatrician from './Pediatrician';
 import AdminDashboard from './AdminDashboard';
 import ManageDoctors from './ManageDoctors';
+import DoctorOfDay from './DoctorOfDay';
+import HealthTip from './HealthTip';
+import NavigationBar from './NavigationBar';
+import SearchAndFilter from './SearchAndFilter';
+import ThemeToggle from './ThemeToggle';
+import DoctorDashboard from './DoctorDashboard';
+
 function App() {
   return (
     <Router>
@@ -23,7 +30,8 @@ function App() {
         <Route path="/Psychiatrist" element={<Psychiatrist />} />
         <Route path="/Pediatrician" element={<Pediatrician />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/manage-doctors" element={<ManageDoctors />} /> 
+        <Route path="/manage-doctors" element={<ManageDoctors />} />
+        <Route path="/doctor-dashboard" element={<DoctorDashboard/>} />
       </Routes>
     </Router>
   );

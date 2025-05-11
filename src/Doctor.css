@@ -176,7 +176,7 @@ body.dark-mode .filter-box select {
   .doctor-content {
     grid-template-columns: 1fr;
   }
- 
+  
   .doctor-sidebar {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

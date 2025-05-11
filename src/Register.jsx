@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -13,148 +15,203 @@ const Register = () => {
   });
 
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
-  const isAdmin = formData.role === 'admin';
+  const doctorAppointments = {
+    Sanjay: [
+      { id: 1, patientName: 'John Doe', time: '9:00 AM' },
+      { id: 2, patientName: 'Jane Smith', time: '10:30 AM' },
+    ],
+    Thanraj: [
+      { id: 1, patientName: 'Tom Hardy', time: '8:00 AM' },
+      { id: 2, patientName: 'Emma Watson', time: '11:00 AM' },
+    ],
+  };
+
+  const getDoctorEmail = (name) => {
+    const index = doctors.indexOf(name);
+    const number = (index + 1).toString().padStart(2, '0');
+    return `gmpnps${number}@gmail.com`;
+  };
+
+  const doctors = [
+    'Sanjay', 'Thanraj', 'Uday', 'Abinav', 'Barath', 'Charan', 'Xavier',
+    'Yaazhan', 'Vignesh', 'Raghul', 'Vikram', 'Priyananthan', 'Ayesha',
+    'Ramesh', 'Sandeep', 'Naman', 'Jakir', 'Laxmanan'
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (isAdmin && ['fullName', 'email', 'phone', 'password', 'confirmPassword'].includes(name)) {
-      // Prevent editing admin fields
-      return;
+    if (name === 'role') {
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        password: '',
+        confirmPassword: '',
+        role: value,
+      });
+      setError('');
+    } else {
+      setFormData({ ...formData, [name]: value });
     }
-
-    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
 
-    if (formData.password !== formData.confirmPassword) {
+    const { role, fullName, email, phone, password, confirmPassword } = formData;
+
+    if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
 
-    if (formData.role === 'admin') {
-      const isAdminValid =
-        formData.fullName === 'Sudheesh V G' &&
-        formData.email === 'sudheeshgirish150@gmail.com' &&
-        formData.phone === '1234567890' &&
-        formData.password === '1234';
+    if (role === 'admin') {
+      const isValidAdmin =
+        fullName === 'Sudheesh V G' &&
+        email === 'sudheeshgirish150@gmail.com' &&
+        phone === '1234567890' &&
+        password === '1234';
 
-      if (!isAdminValid) {
+      if (!isValidAdmin) {
         setError('Unauthorized admin credentials');
+        resetForm();
         return;
       }
 
-      alert('Admin registered successfully!');
+      alert('Admin logged in successfully!');
       navigate('/admin-dashboard');
-    } else {
-      alert('User registered successfully!');
-      navigate('/dashboard');
+      return;
     }
+
+    if (role === 'doctor') {
+      const doctorIndex = doctors.findIndex(
+        (name) => name === fullName && email === getDoctorEmail(name)
+      );
+
+      const isValidDoctor =
+        doctorIndex !== -1 &&
+        phone === '1234567890' &&
+        password === '1234';
+
+      if (!isValidDoctor) {
+        setError('Unauthorized doctor credentials');
+        resetForm();
+        return;
+      }
+
+      const doctorName = doctors[doctorIndex];
+      alert(`Doctor ${doctorName} logged in successfully!`);
+      navigate('/doctor-dashboard', {
+        state: {
+          name: doctorName,
+          appointments: doctorAppointments[doctorName] || [],
+        },
+      });
+      return;
+    }
+
+    alert('User logged in successfully!');
+    navigate('/dashboard');
+  };
+
+  const resetForm = () => {
+    setFormData({
+      fullName: '',
+      email: '',
+      phone: '',
+      password: '',
+      confirmPassword: '',
+      role: 'user',
+    });
   };
 
   return (
-    <>
-      <h1 className="hosp-title1">YOUR LIFE IS OUR LIFE</h1><br /><br />
-      <h1 className="hosp-title2">GMPNPS HOSPITAL</h1>
+    <div className="register-page">
+      <h1 className="hosp-title1">COMMITTED TO COMPASSIONATE CARE AND MEDICAL EXCELLENCE</h1>
+      <h1 className="hosp-title2">GMPNPS Health Clinic</h1>
       <div className="register-wrapper">
         <form className="register-box" onSubmit={handleSubmit}>
-          <h2 className="register-title">Create Account</h2>
+          <h2 className="register-title">Login your Account</h2>
 
           {error && <div className="register-error">{error}</div>}
 
+          {/* Login Role Selection - moved above Full Name */}
           <div className="input-group">
-            <label htmlFor="fullName">Full Name</label>
-            <div className="custom-input">
-              <input
-                type="text"
-                name="fullName"
-                id="fullName"
-                value={isAdmin ? 'Sudheesh V G' : formData.fullName}
-                onChange={handleChange}
-                required
-                readOnly={isAdmin}
-              />
-            </div>
+            <label>LOGIN AS</label>
+            <select
+              className="role-select"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+            >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+              <option value="doctor">Doctor</option>
+            </select>
           </div>
 
           <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <div className="custom-input">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={isAdmin ? 'sudheeshgirish150@gmail.com' : formData.email}
-                onChange={handleChange}
-                required
-                readOnly={isAdmin}
-              />
-            </div>
+            <label>Full Name</label>
+            <input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           <div className="input-group">
-            <label htmlFor="phone">Phone Number</label>
-            <div className="custom-input">
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                value={isAdmin ? '1234567890' : formData.phone}
-                onChange={handleChange}
-                required
-                readOnly={isAdmin}
-              />
-            </div>
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <div className="custom-input">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={isAdmin ? '1234' : formData.password}
-                onChange={handleChange}
-                required
-                readOnly={isAdmin}
-              />
-            </div>
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           <div className="input-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <div className="custom-input">
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                value={isAdmin ? '1234' : formData.confirmPassword}
-                onChange={handleChange}
-                required
-                readOnly={isAdmin}
-              />
-            </div>
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           <div className="input-group">
-            <label htmlFor="role">LOGIN AS</label>
-            <div className="custom-input">
-              <select name="role" id="role" value={formData.role} onChange={handleChange} required>
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
           </div>
 
-          <button type="submit" className="register-btn">Register</button>
+          <button type="submit" className="register-btn">Login</button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

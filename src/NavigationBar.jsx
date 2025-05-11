@@ -22,8 +22,8 @@ const NavigationBar = () => {
         </div>
         <div className="navbar-links">
           {specialties.map((specialty) => (
-            <button
-              key={specialty.name}
+            <button 
+              key={specialty.name} 
               onClick={() => navigate(specialty.path)}
               className={path === specialty.path ? 'navbar-link active' : 'navbar-link'}
             >

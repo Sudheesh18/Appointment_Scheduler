@@ -10,7 +10,7 @@ import ThemeToggle from './ThemeToggle';
 function Pulmonologist() {
   const navigate = useNavigate();
   const [filteredDoctors, setFilteredDoctors] = useState([]);
- 
+  
   const pulmonologists = [
     {
       id: 1,
@@ -38,7 +38,7 @@ function Pulmonologist() {
   };
 
   const handleSchedule = (doctorId) => {
-    alert("Thank you for your request, your appointment will be scheduled soon");
+    alert("Thank you for your request, your appointment will be scheduled soon through an email");
     navigate('/');
   };
 
@@ -46,16 +46,16 @@ function Pulmonologist() {
     <>
       <NavigationBar />
       <div className="doctor-page">
-        <SearchAndFilter
-          doctors={pulmonologists}
+        <SearchAndFilter 
+          doctors={pulmonologists} 
           onFilterChange={handleFilterChange}
         />
-       
+        
         <div className="doctor-content">
           <div className="doctor-main">
             <div className="doctor-image-section">
               <img
-                src="https://t4.ftcdn.net/jpg/10/40/69/43/360_F_1040694383_E9vwZklBH8lier4W4B3aRi9uv6sCyWJo.jpg"
+                src="https://www.marvelhospitals.in/wp-content/uploads/2022/04/pulmonology.jpg"
                 alt="Pulmonologist Department"
               />
             </div>
@@ -75,7 +75,7 @@ function Pulmonologist() {
               </ul>
             </div>
           </div>
-         
+          
           <div className="doctor-sidebar">
             <HealthTip specialty="Pulmonologist" />
             <DoctorOfDay specialty="Pulmonologist" />

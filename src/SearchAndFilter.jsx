@@ -18,21 +18,21 @@ const SearchAndFilter = ({ doctors, onFilterChange }) => {
 
   const filterDoctors = (term, sort) => {
     let filtered = [...doctors];
-   
+    
     // Filter by search term
     if (term) {
-      filtered = filtered.filter(doctor =>
+      filtered = filtered.filter(doctor => 
         doctor.name.toLowerCase().includes(term.toLowerCase())
       );
     }
-   
+    
     // Sort according to selected option
     if (sort === 'name') {
       filtered.sort((a, b) => a.name.localeCompare(b.name));
     } else if (sort === 'availability') {
       filtered.sort((a, b) => a.available.localeCompare(b.available));
     }
-   
+    
     onFilterChange(filtered);
   };
 

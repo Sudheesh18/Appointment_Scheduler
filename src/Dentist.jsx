@@ -10,7 +10,7 @@ import ThemeToggle from './ThemeToggle';
 function Dentist() {
   const navigate = useNavigate();
   const [filteredDoctors, setFilteredDoctors] = useState([]);
- 
+  
   const dentists = [
     {
       id: 1,
@@ -38,7 +38,7 @@ function Dentist() {
   };
 
   const handleSchedule = (doctorId) => {
-    alert("Thank you for your request, your appointment will be scheduled soon");
+    alert("Thank you for your request, your appointment will be scheduled soon through an email");
     navigate('/');
   };
 
@@ -46,16 +46,16 @@ function Dentist() {
     <>
       <NavigationBar />
       <div className="doctor-page">
-        <SearchAndFilter
-          doctors={dentists}
+        <SearchAndFilter 
+          doctors={dentists} 
           onFilterChange={handleFilterChange}
         />
-       
+        
         <div className="doctor-content">
           <div className="doctor-main">
             <div className="doctor-image-section">
               <img
-                src="https://www.shutterstock.com/image-photo/dentistry-dentist-clinic-appointment-happy-600nw-2502156811.jpg"
+                src="https://media.gettyimages.com/id/1175163250/vector/dentist-and-child.jpg?s=612x612&w=gi&k=20&c=W7cuB-93hKPTwHyvXmQUEwqHBnq4P6OG0FWSSxJaYOo="
                 alt="Dentist Department"
               />
             </div>
@@ -75,7 +75,7 @@ function Dentist() {
               </ul>
             </div>
           </div>
-         
+          
           <div className="doctor-sidebar">
             <HealthTip specialty="Dentist" />
             <DoctorOfDay specialty="Dentist" />

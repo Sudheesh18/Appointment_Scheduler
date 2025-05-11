@@ -1,0 +1,214 @@
+/* Global Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff6f61, #f79c42);
+  margin: 0;
+  padding: 0;
+}
+
+.doctor-dashboard {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 50px 20px;
+  border-radius: 20px;
+  max-width: 1100px;
+  margin: 50px auto;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.doctor-dashboard h1 {
+  font-size: 3rem;
+  color: #2c3e50;  /* Darker shade for the doctor's name */
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);  /* Slightly stronger text-shadow for better contrast */
+}
+
+
+.doctor-dashboard h2 {
+  font-size: 2.2rem;
+  color: #ffeb3b;
+  margin-bottom: 40px;
+  font-weight: 600;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.doctor-dashboard ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.doctor-dashboard li {
+  background: #ffffff;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.doctor-dashboard li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.doctor-dashboard .appointment-info {
+  text-align: left;
+  width: 80%;
+  margin-bottom: 15px;
+}
+
+.doctor-dashboard .appointment-info strong {
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.doctor-dashboard .appointment-info p {
+  font-size: 1.1rem;
+  color: #777;
+}
+
+.doctor-dashboard .cancel-btn {
+  background: linear-gradient(45deg, #f44336, #ff5722);
+  color: white;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-out, transform 0.3s ease-out;
+  text-transform: uppercase;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-dashboard .cancel-btn:hover {
+  background: linear-gradient(45deg, #ff5722, #f44336);
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.doctor-dashboard .cancel-btn:active {
+  transform: scale(1.02);
+}
+
+.doctor-dashboard .no-appointments {
+  font-size: 1.5rem;
+  color: #e91e63;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.doctor-dashboard .back-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-out, transform 0.3s ease-out;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+
+.doctor-dashboard .back-btn:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+}
+
+.doctor-dashboard .back-btn:active {
+  transform: scale(1.02);
+}
+
+.doctor-dashboard .appointment-item {
+  background: #fafafa;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.doctor-dashboard .appointment-item:hover {
+  background: #f5f5f5;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Mail Box Styles */
+.mail-box {
+  background-color: #2c3e50; /* Darker background color */
+  color: #ecf0f1; /* Light text color for contrast */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slightly darker shadow for depth */
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 80%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+.mail-content p {
+  margin: 10px 0;
+}
+
+.mail-content textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #34495e; /* Slightly darker border */
+  border-radius: 4px;
+  margin-top: 10px;
+  background-color: #34495e; /* Dark background for textarea */
+  color: #ecf0f1; /* Light text color inside textarea */
+}
+
+.mail-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.mail-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.mail-actions button:hover {
+  background-color: #95a5a6; /* Subtle hover effect */
+}
+
+.mail-actions button:first-child {
+  background-color: #27ae60; /* Dark green for "Send" */
+  color: white;
+}
+
+.mail-actions button:last-child {
+  background-color: #e74c3c; /* Dark red for "Close" */
+  color: white;
+}

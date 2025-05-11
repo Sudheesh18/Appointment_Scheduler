@@ -2,13 +2,13 @@
     padding: 2rem;
     text-align: center;
   }
-  
+ 
   .doctor-row {
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 2rem;
   }
-  
+ 
   .doctor-card {
     background: #fff;
     padding: 1rem;
@@ -18,11 +18,11 @@
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
+ 
   .doctor-card h3 {
     margin-bottom: 1rem;
   }
-  
+ 
   .doctor-card button {
     padding: 0.5rem 1rem;
     background-color: #3498db;
@@ -31,8 +31,7 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
+ 
   .doctor-card button:hover {
     background-color: #2980b9;
   }
-  

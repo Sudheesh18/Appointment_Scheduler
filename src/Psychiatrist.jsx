@@ -10,7 +10,7 @@ import ThemeToggle from './ThemeToggle';
 function Psychiatrist() {
   const navigate = useNavigate();
   const [filteredDoctors, setFilteredDoctors] = useState([]);
- 
+  
   const psychiatrists = [
     {
       id: 1,
@@ -38,7 +38,7 @@ function Psychiatrist() {
   };
 
   const handleSchedule = (doctorId) => {
-    alert("Thank you for your request, your appointment will be scheduled soon");
+    alert("Thank you for your request, your appointment will be scheduled soon through an email");
     navigate('/');
   };
 
@@ -46,16 +46,16 @@ function Psychiatrist() {
     <>
       <NavigationBar />
       <div className="doctor-page">
-        <SearchAndFilter
-          doctors={psychiatrists}
+        <SearchAndFilter 
+          doctors={psychiatrists} 
           onFilterChange={handleFilterChange}
         />
-       
+        
         <div className="doctor-content">
           <div className="doctor-main">
             <div className="doctor-image-section">
               <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/013/504/818/small_2x/feeling-sadness-young-frustrated-man-solving-his-mental-problems-while-having-therapy-session-with-psychologist-photo.jpg"
+                src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                 alt="Psychiatrist Department"
               />
             </div>
@@ -75,7 +75,7 @@ function Psychiatrist() {
               </ul>
             </div>
           </div>
-         
+          
           <div className="doctor-sidebar">
             <HealthTip specialty="Psychiatrist" />
             <DoctorOfDay specialty="Psychiatrist" />

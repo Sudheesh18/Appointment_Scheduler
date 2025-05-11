@@ -4,13 +4,13 @@ import './Doctor.css';
 import NavigationBar from './NavigationBar';
 import SearchAndFilter from './SearchAndFilter';
 import HealthTip from './HealthTip';
-import DoctorOfDay from './/DoctorOfDay';
+import DoctorOfDay from './DoctorOfDay';
 import ThemeToggle from './ThemeToggle';
 
 function Neurologist() {
   const navigate = useNavigate();
   const [filteredDoctors, setFilteredDoctors] = useState([]);
- 
+  
   const neurologists = [
     {
       id: 1,
@@ -38,7 +38,7 @@ function Neurologist() {
   };
 
   const handleSchedule = (doctorId) => {
-    alert("Thank you for your request, your appointment will be scheduled soon");
+    alert("Thank you for your request, your appointment will be scheduled soon through an email");
     navigate('/');
   };
 
@@ -46,11 +46,11 @@ function Neurologist() {
     <>
       <NavigationBar />
       <div className="doctor-page">
-        <SearchAndFilter
-          doctors={neurologists}
+        <SearchAndFilter 
+          doctors={neurologists} 
           onFilterChange={handleFilterChange}
         />
-       
+        
         <div className="doctor-content">
           <div className="doctor-main">
             <div className="doctor-image-section">
@@ -75,7 +75,7 @@ function Neurologist() {
               </ul>
             </div>
           </div>
-         
+          
           <div className="doctor-sidebar">
             <HealthTip specialty="Neurologist" />
             <DoctorOfDay specialty="Neurologist" />
