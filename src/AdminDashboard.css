@@ -362,3 +362,17 @@
   cursor: pointer;
 }
 
+.mailbox-icon {
+  font-size: 1.6rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  background-color: #2980b9;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.mailbox-icon:hover {
+  background-color: #3498db;
+}

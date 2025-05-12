@@ -128,10 +128,15 @@ const AdminDashboard = () => {
   };
 
   const handleSendEmail = () => {
-    // In a real application, you would send the email through an API here
     console.log('Sending email to:', appointmentRequests.find((r) => r.id === currentRequestId).email);
     console.log('Email message:', emailMessage);
     setModalVisible(false);
+  };
+
+  const handleMailboxClick = () => {
+    alert('Redirecting to Admin Mailbox...');
+    // Optionally navigate or set another activeSection
+    // setActiveSection('mailbox')
   };
 
   return (
@@ -142,6 +147,12 @@ const AdminDashboard = () => {
         <button onClick={() => setActiveSection('users')}>Registered Users</button>
         <button onClick={() => setActiveSection('management')}>Doctor Management Panel</button>
         <button onClick={() => setActiveSection('appointment-requests')}>Enabling Appointment Request</button>
+
+        {/* Mailbox icon button */}
+        <div className="mailbox-icon" onClick={handleMailboxClick} title="Mailbox">
+          📬
+        </div>
+
         {(activeSection === 'appointments' || activeSection === 'users' || activeSection === 'appointment-requests') && (
           <input
             type="text"
