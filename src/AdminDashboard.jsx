@@ -16,35 +16,42 @@ const AdminDashboard = () => {
   const [modalMessage, setModalMessage] = useState('');
   const [emailMessage, setEmailMessage] = useState('');
   const [currentRequestId, setCurrentRequestId] = useState(null);
+  const [currentUserId, setCurrentUserId] = useState(null);
+  const [modalContext, setModalContext] = useState(''); // 'request' or 'user'
   const navigate = useNavigate();
+
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
 
   useEffect(() => {
     const dummyAppointments = [
       {
-        name: 'Alice Smith',
-        email: 'alice@gmail.com',
+        name: 'Dinesh',
+        email: 'dinesh@gmail.com',
         doctor: 'Dr. Patel',
-        day: 'Monday',
+        day: 'Tuesday',
         time: '10:30 AM',
-        date: '2025-05-07',
+        date: '2025-05-13',
       },
       {
-        name: 'Bob Johnson',
-        email: 'bob@yahoo.com',
+        name: 'anirudh',
+        email: 'anirudh@gmail.com',
         doctor: 'Dr. Khan',
         day: 'Wednesday',
         time: '2:00 PM',
-        date: '2025-05-01',
+        date: '2025-05-14',
       },
     ];
     const dummyUsers = [
-      { id: 1, name: 'Alice Smith', email: 'alice@gmail.com' },
-      { id: 2, name: 'Bob Johnson', email: 'bob@yahoo.com' },
+      { id: 1, name: 'Dinesh', email: 'dinesh@gmail.com' },
+      { id: 2, name: 'Vimal', email: 'vimal@gmail.com' },
       { id: 3, name: 'Spam Bot', email: 'bot123@spam.com' },
     ];
     const dummyRequests = [
-      { id: 1, name: 'Charlie Brown', email: 'charlie@brown.com', doctor: 'Dr. Lee', date: '2025-05-10', time: '11:00 AM' },
-      { id: 2, name: 'Daisy Green', email: 'daisy@green.com', doctor: 'Dr. Zhang', date: '2025-05-12', time: '9:30 AM' },
+      { id: 1, name: 'mary', email: 'mary@gmail.com', doctor: 'Dr. Manoj', date: '2025-05-10', time: '11:00 AM' },
+      { id: 2, name: 'priya', email: 'priya@gmail.com', doctor: 'Dr. Sasi', date: '2025-05-12', time: '9:30 AM' },
     ];
 
     setAppointments(dummyAppointments);
@@ -75,12 +82,6 @@ const AdminDashboard = () => {
 
     setWeeklyTotal(weekly);
     setMonthlyTotal(monthly);
-  };
-
-  const handleRemoveUser = (id) => {
-    const updatedUsers = users.filter((user) => user.id !== id);
-    setUsers(updatedUsers);
-    setFilteredUsers(updatedUsers);
   };
 
   const handleSearch = (e) => {
@@ -115,6 +116,7 @@ const AdminDashboard = () => {
 
   const handleApproveRequest = (id) => {
     setCurrentRequestId(id);
+    setModalContext('request');
     setModalMessage('Appointment has been approved.');
     setEmailMessage('Your appointment request has been approved.');
     setModalVisible(true);
@@ -122,33 +124,59 @@ const AdminDashboard = () => {
 
   const handleRejectRequest = (id) => {
     setCurrentRequestId(id);
+    setModalContext('request');
     setModalMessage('Appointment has been rejected.');
     setEmailMessage('Your appointment request has been rejected.');
     setModalVisible(true);
   };
 
+  const handleRemoveUser = (id) => {
+    setCurrentUserId(id);
+    setModalContext('user');
+    setModalMessage('User will be removed from the system.');
+    setEmailMessage('Your account has been removed by the administrator.');
+    setModalVisible(true);
+  };
+
   const handleSendEmail = () => {
-    console.log('Sending email to:', appointmentRequests.find((r) => r.id === currentRequestId).email);
-    console.log('Email message:', emailMessage);
+    if (modalContext === 'request') {
+      const recipient = appointmentRequests.find((r) => r.id === currentRequestId);
+      if (recipient) {
+        console.log('Sending email to:', recipient.email);
+        console.log('Email message:', emailMessage);
+      }
+    } else if (modalContext === 'user') {
+      const recipient = users.find((u) => u.id === currentUserId);
+      if (recipient) {
+        console.log('Sending email to:', recipient.email);
+        console.log('Email message:', emailMessage);
+      }
+      const updatedUsers = users.filter((user) => user.id !== currentUserId);
+      setUsers(updatedUsers);
+      setFilteredUsers(updatedUsers);
+    }
     setModalVisible(false);
   };
 
   const handleMailboxClick = () => {
     alert('Redirecting to Admin Mailbox...');
-    // Optionally navigate or set another activeSection
-    // setActiveSection('mailbox')
+  };
+
+  const handleTodayAppointments = () => {
+    const todayAppointments = appointments.filter((appt) => appt.date === getTodayDate());
+    setFilteredAppointments(todayAppointments);
+    setActiveSection('appointments');
   };
 
   return (
     <>
       <nav className="admin-nav">
-        <button onClick={() => setActiveSection('appointments')}>Scheduled Appointments Today</button>
+        <button onClick={handleTodayAppointments}>Scheduled Appointments Today</button>
         <button onClick={() => setActiveSection('analytics')}>This Week / Month Stats</button>
         <button onClick={() => setActiveSection('users')}>Registered Users</button>
         <button onClick={() => setActiveSection('management')}>Doctor Management Panel</button>
         <button onClick={() => setActiveSection('appointment-requests')}>Enabling Appointment Request</button>
 
-        {/* Mailbox icon button */}
         <div className="mailbox-icon" onClick={handleMailboxClick} title="Mailbox">
           📬
         </div>
@@ -157,13 +185,7 @@ const AdminDashboard = () => {
           <input
             type="text"
             className="search-input"
-            placeholder={
-              activeSection === 'appointments'
-                ? 'Search by name, email, or doctor'
-                : activeSection === 'users'
-                ? 'Search by name or email'
-                : 'Search by name, email, or doctor'
-            }
+            placeholder={activeSection === 'appointments' ? 'Search by name, email, or doctor' : 'Search by name or email'}
             value={searchQuery}
             onChange={handleSearch}
           />
@@ -173,29 +195,33 @@ const AdminDashboard = () => {
       <div className="admin-dashboard">
         {activeSection === 'appointments' && (
           <>
-            <h2>All Scheduled Appointments</h2>
-            <table className="appointments-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Doctor</th>
-                  <th>Day</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredAppointments.map((appt, index) => (
-                  <tr key={index}>
-                    <td>{appt.name}</td>
-                    <td>{appt.email}</td>
-                    <td>{appt.doctor}</td>
-                    <td>{appt.day}</td>
-                    <td>{appt.time}</td>
+            <h2>Scheduled Appointments</h2>
+            {filteredAppointments.length === 0 ? (
+              <p>No appointments scheduled today.</p>
+            ) : (
+              <table className="appointments-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Doctor</th>
+                    <th>Day</th>
+                    <th>Time</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredAppointments.map((appt, index) => (
+                    <tr key={index}>
+                      <td>{appt.name}</td>
+                      <td>{appt.email}</td>
+                      <td>{appt.doctor}</td>
+                      <td>{appt.day}</td>
+                      <td>{appt.time}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </>
         )}
 
@@ -288,6 +314,19 @@ const AdminDashboard = () => {
         <div className="modal-overlay">
           <div className="modal-box">
             <p>{modalMessage}</p>
+            <label className="modal-label">To:</label>
+            <input
+              type="email"
+              className="modal-input"
+              value={
+                modalContext === 'request'
+                  ? appointmentRequests.find((r) => r.id === currentRequestId)?.email || ''
+                  : users.find((u) => u.id === currentUserId)?.email || ''
+              }
+              disabled
+            />
+
+            <label className="modal-label">Message:</label>
             <textarea
               placeholder="Type your email message here..."
               value={emailMessage}
@@ -295,6 +334,7 @@ const AdminDashboard = () => {
               rows="4"
               className="email-textarea"
             />
+
             <div className="modal-actions">
               <button className="modal-send-btn" onClick={handleSendEmail}>Send Email</button>
               <button className="modal-close-btn" onClick={() => setModalVisible(false)}>Close</button>

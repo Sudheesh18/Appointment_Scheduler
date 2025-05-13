@@ -1,9 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import './Dashboard.css'; // Assumes your nav styles are defined here
 
 const NavigationBar = () => {
   const navigate = useNavigate();
-  const path = window.location.pathname;
+  const location = useLocation();
+  const path = location.pathname;
 
   const specialties = [
     { name: "Dentist", path: "/Dentist" },
@@ -21,6 +23,12 @@ const NavigationBar = () => {
           Appointment Scheduler
         </div>
         <div className="navbar-links">
+          <button
+            onClick={() => navigate('/user-appointments')}
+            className={path === '/user-appointments' ? 'navbar-link active' : 'navbar-link'}
+          >
+            Your Appointments
+          </button>
           {specialties.map((specialty) => (
             <button 
               key={specialty.name} 

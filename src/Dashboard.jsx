@@ -49,12 +49,13 @@ function Dashboard() {
   return (
     <>
       <NavigationBar />
+
       <div className="overall-container">
         <div className="dashboard-header">
           <h1>Medical Specialists</h1>
           <p>Schedule appointments with top specialists in various medical fields</p>
         </div>
-        
+
         <div className="dashboard-container">
           {specialties.map((specialty) => (
             <div 
@@ -69,6 +70,7 @@ function Dashboard() {
           ))}
         </div>
       </div>
+
       <ThemeToggle />
     </>
   );

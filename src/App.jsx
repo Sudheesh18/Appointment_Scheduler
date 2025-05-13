@@ -16,6 +16,7 @@ import NavigationBar from './NavigationBar';
 import SearchAndFilter from './SearchAndFilter';
 import ThemeToggle from './ThemeToggle';
 import DoctorDashboard from './DoctorDashboard';
+import UserAppointments from './UserAppointments';
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/manage-doctors" element={<ManageDoctors />} />
         <Route path="/doctor-dashboard" element={<DoctorDashboard/>} />
+        <Route path="/user-appointments" element={<UserAppointments />} />
+
       </Routes>
     </Router>
   );
